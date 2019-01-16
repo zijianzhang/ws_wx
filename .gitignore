@@ -6,3 +6,4 @@ demo/api
 demo/emoji.txt
 demo/test.py
 demo/test_request.py
+demo/*.jpg
