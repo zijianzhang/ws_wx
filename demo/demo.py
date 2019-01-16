@@ -17,7 +17,7 @@ def hello():
 @app.route("/play/<string:playerId>/<int:level>",methods=['GET','POST'])
 def main(playerId,level):
     if request.method == 'GET':
-        print("nb")
+        print("sb")
         emoji = initialEmoji()
         return jsonify(level=level,emoji=emoji) 
 
