@@ -1,6 +1,6 @@
 *.pyc
 *.pyo
-*jpg
+*.jpg
 demo/file
 demo/api
 demo/emoji.txt
