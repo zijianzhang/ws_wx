@@ -5,6 +5,7 @@ MAINTAINER Zhangzi Zijian <342088102@qq.com>
 
 WORKDIR /app/
 COPY r.txt /app/
+RUN pip install --upgrade pip
 RUN pip install -r r.txt
 COPY . /app/
 
