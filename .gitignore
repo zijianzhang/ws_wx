@@ -1,9 +1,7 @@
 *.pyc
 *.pyo
 *.jpg
+*.json
 demo/file
-demo/api
-demo/emoji.txt
-demo/test.py
-demo/test_request.py
-demo/*.jpg
+demo/test
+/api
