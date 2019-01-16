@@ -1,2 +1,8 @@
 *.pyc
 *.pyo
+*.jpg
+*.json
+demo/emoji.txt
+demo/file
+demo/test
+/api

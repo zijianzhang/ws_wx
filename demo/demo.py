@@ -1,5 +1,11 @@
-from flask import Flask,request,jsonify
 import json
+import api
+import random
+import os
+import base64
+from PIL import Image
+from flask import Flask,request,jsonify
+from utils import resize_by_size,getEmoji,initialEmoji
 
 app = Flask(__name__)
 
@@ -7,16 +13,15 @@ app = Flask(__name__)
 def hello():
     return jsonify(data='hello world!')
 
-
 @app.route("/play/<string:playerId>/",defaults={'level': 0},methods=['GET','POST'])
 @app.route("/play/<string:playerId>/<int:level>",methods=['GET','POST'])
 def main(playerId,level):
     if request.method == 'GET':
         print("nb")
-        return jsonify(level=level,) 
+        emoji = initialEmoji()
+        return jsonify(level=level,emoji=emoji) 
 
     if request.method == 'POST':
-        import os,base64 
         if not os.path.isdir('file'):
             os.makedirs('file')
         files = os.listdir('file/')
@@ -24,19 +29,17 @@ def main(playerId,level):
             os.makedirs('file/'+playerId)
         filePath = 'file/'+playerId+'/'
         data = request.get_json()
-        img = data.get('img','')
-        if img:
-            imgdata = base64.b64decode(img)
-            with open(filePath+playerId+'-'+str(level)+'.jpg','wb') as p:
-                p.write(imgdata)
-            from random import randint
-            score = {'level'+str(level)+'score':randint(1,100)}
+        imgdata = data.get('img','')
+        if imgdata:
+            imgPath = filePath+playerId+'-'+str(level)+'.jpg'
+            imgdata = resize_by_size(imgdata, imgPath)
+            score = api.emotion(imgdata)
+            score = getEmoji(score)
             with open(filePath+playerId+'-'+str(level)+'.json','wb') as s:
                 s.write(str(score).encode())
         else:
             score = {'score':-1}
         return jsonify(score=score)
-
 
 class player(object):
     def __init__(self):
@@ -48,3 +51,4 @@ class player(object):
 if __name__ == '__main__':
     app.run(host='127.0.0.1',port=5000)
     print('nb')
+

@@ -9,6 +9,7 @@ itsdangerous==1.1.0
 Jinja2==2.10
 MarkupSafe==1.1.0
 Naked==0.1.31
+Pillow==5.4.1
 post==2018.11.20
 public==2018.11.20
 pycrypto==2.6.1
