@@ -66,10 +66,7 @@ def gtResponse(aesKey, data):
     return responseData
 
 def emotion(fileBase64):
-# def emotion():
     requestDataJson = {}
-    # with open('demo.jpg','rb') as p:
-    #     fileBase64 = base64.b64encode(p.read()).decode("utf-8")
     requestDataJson["data"] = fileBase64
     requestDataJson["type"] = 0
     aesKey = str(uuid.uuid1()).replace('-','')[0:16]
@@ -91,4 +88,6 @@ def get_setting():
 
 
 if __name__ == "__main__":
-    print(emotion())
+    with open('test/2.jpg','rb') as p:
+        fileBase64 = base64.b64encode(p.read()).decode("utf-8")
+    print(emotion(fileBase64))
