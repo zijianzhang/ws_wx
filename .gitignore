@@ -5,4 +5,6 @@
 demo/emoji.txt
 demo/file
 demo/test
+demo/nginx
+demo/secret.csv
 /api
